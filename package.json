@@ -1,0 +1,19 @@
+{
+  "name": "expressadventuregame",
+  "version": "1.0.0",
+  "description": "Express Adventure Game Assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Evan Tyo",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2"
+  },
+  "engines" : { 
+    "node": "12.x" 
+  }
+}

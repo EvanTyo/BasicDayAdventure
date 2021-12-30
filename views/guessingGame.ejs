@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Guessing Game</h1>
+
+    <p>
+        The mini-game is simple... guess a number between 1 and 20. <br>
+        If you're correct, you win.<br>
+        If you're wrong, you will have to try again.<br>
+        Five incorrect answers... and you lose.<br>
+        <br>
+        Enter your guess and click enter:
+    </p>
+
+    <input type="text" id="guessId" class="guessClass" value="" placeholder="Enter your guess here">
+
+    <br><br>
+
+    <button class="guessButton" onclick="guess()">Enter</button>
+    
+    <br><br>
+
+    <span id="messageId"></span>
+
+    <script>
+    var count = 0;
+    let message = "";
+
+    function guess() {
+        const route = "http://localhost:3400";
+        const guess = document.getElementById("guessId").value;
+        const random = Math.floor(Math.random() * (20 - 1)) + 1;
+        
+        if (isNaN(guess) || (guess < 1) || (guess > 21)) {
+            message = `Please enter a valid number between 1 and 20.`;
+        }
+        
+        else {
+
+            if (guess != random) {
+                count++;
+                
+                if (count === 5) {
+                    window.location.href = `${route}/guessingGame/lose`;
+                }
+
+                message = `Number of incorrect guesses: ${count}`;
+            }
+
+            else if (guess == random) {
+                window.location.href = `${route}/guessingGame/win`;
+            }
+        }
+
+        document.getElementById("messageId").innerHTML = message;
+    }
+
+    </script>
+</body>
+</html>
