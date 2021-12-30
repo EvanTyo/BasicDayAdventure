@@ -99,56 +99,54 @@ app.get("/routeCalc", (req, res) => {
 });
 
 app.get("/add/:number1/:number2", (req, res) => {
-    const entry1 = req.params["number1"];
-    const entry2 = req.params["number2"];
+    const number1 = parseInt(req.params["number1"]);
+    const number2 = parseInt(req.params["number2"]);
+    const method = "Add";
     const sign = "+";
 
-    checkInt(res, sign, entry1, entry2);
+    checkInt(res, method, sign, number1, number2);
 });
 
 app.get("/subtract/:number1/:number2", (req, res) => {
-    const entry1 = req.params["number1"];
-    const entry2 = req.params["number2"];
+    const number1 = parseInt(req.params["number1"]);
+    const number2 = parseInt(req.params["number2"]);
+    const method = "Subtract";
     const sign = "-";
     
-    checkInt(res, sign, entry1, entry2);
+    checkInt(res, method, sign, number1, number2);
 });
 
 app.get("/multiply/:number1/:number2", (req, res) => {
-    const entry1 = req.params["number1"];
-    const entry2 = req.params["number2"];
+    const number1 = parseInt(req.params["number1"]);
+    const number2 = parseInt(req.params["number2"]);
+    const method = "Multiply";
     const sign = "*";
     
-    checkInt(res, sign, entry1, entry2);
+    checkInt(res, method, sign, number1, number2);
 });
 
 app.get("/divide/:number1/:number2", (req, res) => {
-    const entry1 = req.params["number1"];
-    const entry2 = req.params["number2"];
+    const number1 = parseInt(req.params["number1"]);
+    const number2 = parseInt(req.params["number2"]);
+    const method = "Divide";
     const sign = "/";
     
-    checkInt(res, sign, entry1, entry2);
+    checkInt(res, method, sign, number1, number2);
 });
 
 app.get("/mod/:number1/:number2", (req, res) => {
-    const entry1 = req.params["number1"];
-    const entry2 = req.params["number2"];
+    const number1 = parseInt(req.params["number1"]);
+    const number2 = parseInt(req.params["number2"]);
+    const method = "Mod";
     const sign = "%";
     
-    checkInt(res, sign, entry1, entry2);
+    checkInt(res, method, sign, number1, number2);
 });
 
-function checkInt(res, sign, entry1, entry2) {
-    const number1 = parseInt(entry1);
-    const number2 = parseInt(entry2);
-
+function checkInt(res, method, sign, number1, number2) {
     const equation = `${number1} ${sign} ${number2}`
     const answer = eval(equation);
+    const full = `${equation} = ${answer}`;
 
-    if (isNaN(entry1) || isNaN(entry2)) {
-        res.send(`${entry1} and ${entry2} are not integers`);
-    }
-    else {
-        res.send(`${equation} = ${answer}`);
-    }
+    res.render("calculated.ejs", {method: method, message: full});
 }

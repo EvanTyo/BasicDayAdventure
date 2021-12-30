@@ -36,11 +36,14 @@
 
     <span id="messageId"></span>
 
+    <br><br>
+
+    <a href="/">Home</a>
+
     <script>
     let message = "";
 
     function calculate() {
-        const route = "http://localhost:3400";
         const valueOne = document.getElementById("valueOne").value;
         const valueTwo = document.getElementById("valueTwo").value;
         const choices = document.querySelectorAll('input[name="calcRadio"]');
@@ -51,10 +54,17 @@
                 method = choice.value;
                 break;
             }
+            else {
+                method = "No selection";
+            }
         }
         
         if (isNaN(valueOne) || isNaN(valueTwo)) {
-            message = `Please enter a valid number.`;
+            message = `Please enter valid numbers.`;
+        }
+
+        else if (method == "No selection") {
+            message = `Please select a calculation method.`;
         }
         
         else {

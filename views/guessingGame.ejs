@@ -28,12 +28,15 @@
 
     <span id="messageId"></span>
 
+    <br><br>
+
+    <a href="/">Home</a>
+
     <script>
     var count = 0;
     let message = "";
 
     function guess() {
-        const route = "http://localhost:3400";
         const guess = document.getElementById("guessId").value;
         const random = Math.floor(Math.random() * (20 - 1)) + 1;
         
@@ -54,7 +57,7 @@
             }
 
             else if (guess == random) {
-                window.location.href = `${route}/guessingGame/win`;
+                window.location.href = `/guessingGame/win`;
             }
         }
 
