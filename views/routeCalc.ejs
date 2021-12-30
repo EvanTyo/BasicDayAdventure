@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Route Calculator</h1>
+
+    <p>
+        This mini-game(?) is simple, because it's actually just a calculator. <br>
+        Enter two values below, then click on the preferred calculation method and hit calculate.<br>
+        You will be redirected to a page with your calculation shwon. <br>
+        <br>
+        Enter your values, chose your method, and click calculate:
+    </p>
+
+    <input type="text" id="valueOne" value="" placeholder="First value">
+    <input type="text" id="valueTwo" value="" placeholder="Second value">
+
+    <br><br>
+
+    <input type="radio" name="calcRadio" id="addRadio" value="Add">Add</input><br>
+    <input type="radio" name="calcRadio" id="subtractRadio" value="Subtract">Subtract</input><br>
+    <input type="radio" name="calcRadio" id="multiplyRadio" value="Multiply">Multiply</input><br>
+    <input type="radio" name="calcRadio" id="divideRadio" value="Divide">Divide</input><br>
+    <input type="radio" name="calcRadio" id="modRadio" value="Mod">Mod</input>
+
+    <br><br>
+
+    <button class="calculateButton" onclick="calculate()">Calculate</button>
+    
+    <br><br>
+
+    <span id="messageId"></span>
+
+    <script>
+    let message = "";
+
+    function calculate() {
+        const route = "http://localhost:3400";
+        const valueOne = document.getElementById("valueOne").value;
+        const valueTwo = document.getElementById("valueTwo").value;
+        const choices = document.querySelectorAll('input[name="calcRadio"]');
+        let method;
+
+        for (const choice of choices) {
+            if (choice.checked) {
+                method = choice.value;
+                break;
+            }
+        }
+        
+        if (isNaN(valueOne) || isNaN(valueTwo)) {
+            message = `Please enter a valid number.`;
+        }
+        
+        else {
+            window.location.href = `${route}/${method}/${valueOne}/${valueTwo}`;
+        }
+
+        document.getElementById("messageId").innerHTML = message;
+    }
+
+    </script>
+</body>
+</html>

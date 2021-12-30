@@ -92,3 +92,63 @@ app.get("/guessingGame/win", (req, res) => {
 app.get("/guessingGame/lose", (req, res) => {
     res.render("lose.ejs");
 });
+
+// Route Calculator
+app.get("/routeCalc", (req, res) => {
+    res.render("routeCalc.ejs");
+});
+
+app.get("/add/:number1/:number2", (req, res) => {
+    const entry1 = req.params["number1"];
+    const entry2 = req.params["number2"];
+    const sign = "+";
+
+    checkInt(res, sign, entry1, entry2);
+});
+
+app.get("/subtract/:number1/:number2", (req, res) => {
+    const entry1 = req.params["number1"];
+    const entry2 = req.params["number2"];
+    const sign = "-";
+    
+    checkInt(res, sign, entry1, entry2);
+});
+
+app.get("/multiply/:number1/:number2", (req, res) => {
+    const entry1 = req.params["number1"];
+    const entry2 = req.params["number2"];
+    const sign = "*";
+    
+    checkInt(res, sign, entry1, entry2);
+});
+
+app.get("/divide/:number1/:number2", (req, res) => {
+    const entry1 = req.params["number1"];
+    const entry2 = req.params["number2"];
+    const sign = "/";
+    
+    checkInt(res, sign, entry1, entry2);
+});
+
+app.get("/mod/:number1/:number2", (req, res) => {
+    const entry1 = req.params["number1"];
+    const entry2 = req.params["number2"];
+    const sign = "%";
+    
+    checkInt(res, sign, entry1, entry2);
+});
+
+function checkInt(res, sign, entry1, entry2) {
+    const number1 = parseInt(entry1);
+    const number2 = parseInt(entry2);
+
+    const equation = `${number1} ${sign} ${number2}`
+    const answer = eval(equation);
+
+    if (isNaN(entry1) || isNaN(entry2)) {
+        res.send(`${entry1} and ${entry2} are not integers`);
+    }
+    else {
+        res.send(`${equation} = ${answer}`);
+    }
+}
