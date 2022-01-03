@@ -38,7 +38,7 @@
 
     <br><br>
 
-    <a href="/">Home</a>
+    <a href="/home">Home</a>
 
     <script>
     let message = "";
@@ -59,7 +59,7 @@
             }
         }
         
-        if (isNaN(valueOne) || isNaN(valueTwo)) {
+        if (isNaN(valueOne) || isNaN(valueTwo) || valueOne == "" || valueTwo == "") {
             message = `Please enter valid numbers.`;
         }
 
